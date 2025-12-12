@@ -1,0 +1,9 @@
+{
+	"name": "factory-azure-project",
+	"location": "uksouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "e8f3a24d-4c6e-440e-a86e-3ef09a33e996",
+		"tenantId": "a3fad7f1-27ab-4238-b233-ea2dc8fc1428"
+	}
+}
