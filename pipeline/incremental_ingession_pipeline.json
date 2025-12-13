@@ -5,8 +5,6 @@
 			{
 				"name": "azureSQLToLake",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "last_cdc",
@@ -32,10 +30,6 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": {
-							"value": "select * from @{pipeline().parameters.schema}.@{pipeline().parameters.table} where @{pipeline().parameters.cdc_col} > '@{activity('last_cdc').output.value[0].cdc}'",
-							"type": "Expression"
-						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -135,13 +129,16 @@
 		],
 		"parameters": {
 			"cdc_col": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "updated_at"
 			},
 			"schema": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "dbo"
 			},
 			"table": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "DimUser"
 			}
 		},
 		"variables": {
